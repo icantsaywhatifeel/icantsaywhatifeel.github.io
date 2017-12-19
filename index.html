@@ -383,13 +383,24 @@
 
         	);
 
-        	// $(window).resize(function() {
-        	// 	last_w = w;
-        	// 	new_w = $(window).width();
-        	// 	if(! (last_w < 769 && new_w < 769) || (last_w >= 769 && new_w >= 769)) {
-        	// 		location.reload();
-        	// 	}
-        	// });
+        	if(w > $(window).height()) {
+        		screen = 'landscape';
+        	} else {
+        		screen = 'portrait';
+        	}
+
+        	$(window).resize(function() {
+        		
+        		if($(window).width() > $(window).height()) {
+        			new_screen = 'landscape';
+	        	} else {
+	        		new_screen = 'portrait';
+	        	}
+        		if(screen != new_screen) {
+        			location.reload();
+        		}
+
+        	});
 
         </script>
         
