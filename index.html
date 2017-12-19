@@ -384,17 +384,17 @@
         	);
 
         	if(w > $(window).height()) {
-        		screen = 'landscape';
+        		var screen = 'landscape';
         	} else {
-        		screen = 'portrait';
+        		var screen = 'portrait';
         	}
 
         	$(window).resize(function() {
         		
         		if($(window).width() > $(window).height()) {
-        			new_screen = 'landscape';
+        			var new_screen = 'landscape';
 	        	} else {
-	        		new_screen = 'portrait';
+	        		var new_screen = 'portrait';
 	        	}
         		if(screen != new_screen) {
         			location.reload();
