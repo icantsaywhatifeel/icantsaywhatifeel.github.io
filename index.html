@@ -334,7 +334,6 @@
         <script>
 
         	if((w = $(window).width()) < 769) {
-        		m = 1;
         		$('.image').each(function() {
         			var src = $(this).attr('data-src');
         			$(this).html('<img data-src="'+src+'">');
@@ -344,47 +343,40 @@
         		$('.image img').lazy();
         	} else {
         		$('.image').lazy();
-        		m = 0;
         	}
 
         	var logo = $('.logo');
         	var contacts = $('.contacts');
         	logo.css('background-color', $('.project.active').attr('data-color'));
-        	if(!m) {
-        		contacts.css('background-color', $('.project.active').attr('data-color'));
-        	}
+        	contacts.css('background-color', $('.project.active').attr('data-color'));
 
         	$(window).scroll(
 
         		function() {
 
-        			if(!m) {
+	        		scroll_from_top = $(this).scrollTop();
 
-		        		scroll_from_top = $(this).scrollTop();
+	        		next_scroll_block = $(".project.active").next(".project");
+	        		prev_scroll_block = $(".project.active").prev(".project");
+	        		
+	        		if(next_scroll_block.hasClass('project')) {
+	        			if((scroll_from_top + 100) >= next_scroll_block.offset().top) {
+		        			current_active = $(".project.active");
+		        			current_active.next().addClass('active');
+		        			current_active.removeClass('active');
+		        			logo.css('background-color', $('.project.active').attr('data-color'));
+		        			contacts.css('background-color', $('.project.active').attr('data-color'));
+		        		} 
+	        		}
 
-		        		next_scroll_block = $(".project.active").next(".project");
-		        		prev_scroll_block = $(".project.active").prev(".project");
-		        		
-		        		if(next_scroll_block.hasClass('project')) {
-		        			if((scroll_from_top + 100) >= next_scroll_block.offset().top) {
-			        			current_active = $(".project.active");
-			        			current_active.next().addClass('active');
-			        			current_active.removeClass('active');
-			        			logo.css('background-color', $('.project.active').attr('data-color'));
-			        			contacts.css('background-color', $('.project.active').attr('data-color'));
-			        		} 
-		        		}
-
-		        		if(prev_scroll_block.hasClass('project')) {
-		        			if((scroll_from_top + 100) <= (prev_scroll_block.offset().top + prev_scroll_block.height())) {
-			        			current_active = $(".project.active");
-			        			current_active.prev().addClass('active');
-			        			current_active.removeClass('active');
-			        			logo.css('background-color', $('.project.active').attr('data-color'));
-			        			contacts.css('background-color', $('.project.active').attr('data-color'));
-			        		} 
-		        		}
-
+	        		if(prev_scroll_block.hasClass('project')) {
+	        			if((scroll_from_top + 100) <= (prev_scroll_block.offset().top + prev_scroll_block.height())) {
+		        			current_active = $(".project.active");
+		        			current_active.prev().addClass('active');
+		        			current_active.removeClass('active');
+		        			logo.css('background-color', $('.project.active').attr('data-color'));
+		        			contacts.css('background-color', $('.project.active').attr('data-color'));
+		        		} 
 	        		}
 
         		}
