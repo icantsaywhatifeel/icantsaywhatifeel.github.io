@@ -383,16 +383,14 @@
 
         	);
 
-        	if(w > $(window).height()) {
-        		var screen = 'landscape';
-        	} else {
-        		var screen = 'portrait';
-        	}
-
         	$(window).resize(function() {
 
         		if( (w < 769 && ($(window).width() >= 769) ) || (w >= 769 && ($(window).width() < 769)) ) {
         			location.reload();
+        		} else {
+        			w = $(window).width();
+        			h = 1440 * w / 1844;
+        			$('.image img').css({ 'width' : w+'px', 'height' : h+'px' });
         		}
         		
         	});
