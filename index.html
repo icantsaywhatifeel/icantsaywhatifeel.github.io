@@ -333,11 +333,13 @@
 
         <script>
 
-        	if($(window).width() < 769) {
+        	if((w = $(window).width()) < 769) {
         		$('.image').each(function() {
         			var src = $(this).attr('data-src');
         			$(this).html('<img data-src="'+src+'">');
         		});
+        		h = 1440 * w / 1844;
+        		$('.image img').css({ 'width' : w+'px', 'height' : h+'px'});
         		$('.image img').lazy();
         	} else {
         		$('.image').lazy();
