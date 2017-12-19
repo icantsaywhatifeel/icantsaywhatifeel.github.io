@@ -390,16 +390,11 @@
         	}
 
         	$(window).resize(function() {
-        		
-        		if($(window).width() > $(window).height()) {
-        			new_screen = 'landscape';
-	        	} else {
-	        		new_screen = 'portrait';
-	        	}
-        		if(screen != new_screen) {
+
+        		if( (w < 769 && ($(window).width() >= 769) ) || (w >= 769 && ($(window).width() < 769)) ) {
         			location.reload();
         		}
-
+        		
         	});
 
         </script>
